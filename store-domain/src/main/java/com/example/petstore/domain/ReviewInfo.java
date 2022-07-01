@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 //Aggregate Root
 @Entity
-public class Customer {
+public class ReviewInfo {
     @Id
     String id;
 
