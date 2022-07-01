@@ -22,7 +22,7 @@ public class PartyInfo {
     String startPlace;
     String endPlace;
     String price;
-    
+
         public Long getId() {
             return id;
         }
@@ -40,5 +40,4 @@ public class PartyInfo {
             this.customers = customers;
         }
 
-    
 }

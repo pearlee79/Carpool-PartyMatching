@@ -21,9 +21,6 @@ public class Member {
     Long curPartyId;
     MemberStatus memberStatus;
 
-    @Embedded
-    Money price;
-
     public String getName() {
         return name;
     }
@@ -71,8 +68,6 @@ public class Member {
     public void setCurPartyId(Long curPartyId) {
         this.curPartyId = curPartyId;
     } 
-
-        
 
 
 }
