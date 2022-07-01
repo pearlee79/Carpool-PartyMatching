@@ -13,10 +13,11 @@ import java.util.List;
 
 
 @Entity
-public class CartItem {
+public class PartyInfo {
 
     @Id  @GeneratedValue
     Long id;
+    PartyStatus partyStatus;
         public Long getId() {
             return id;
         }
@@ -24,31 +25,14 @@ public class CartItem {
             this.id = id;
         }
 
-    @ManyToOne
-    Customer customer;
-        public Customer getCustomer() {
-            return customer;
-        }
-        public void setCustomer(Customer customer) {
-            this.customer = customer;
-        }
 
     @OneToMany
-    List<Item> items;
-        public List<Item> getItems() {
-            return items;
+    List<Customer> customers;
+        public List<Customer> getCustomers() {
+            return customers;
         }
-        public void setItems(List<Item> items) {
-            this.items = items;
-        }
-
-    @Embedded
-    Payment payment;
-        public Payment getPayment() {
-            return payment;
-        }
-        public void setPayment(Payment payment) {
-            this.payment = payment;
+        public void setCustomers(List<Customer> customers) {
+            this.customers = customers;
         }
 
     
