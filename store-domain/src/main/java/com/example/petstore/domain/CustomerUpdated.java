@@ -1,6 +1,5 @@
 package com.example.petstore.domain;
-
-import com.example.petstore.domain.PetReserved;
+import com.example.petstore.AbstractEvent;
 
 public class CustomerUpdated extends AbstractEvent{
     Long id;
@@ -33,7 +32,7 @@ public class CustomerUpdated extends AbstractEvent{
         return curPhoto;
     }
 
-    public void setCurPhoto(Money curPhoto) {
+    public void setCurPhoto(String curPhoto) {
         this.curPhoto = curPhoto;
    }
 

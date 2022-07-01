@@ -1,3 +1,5 @@
+package com.example.petstore.domain;
+
 public enum MemberStatus{
     JOINED,
     DENIED,

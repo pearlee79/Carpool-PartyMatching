@@ -1,6 +1,6 @@
 package com.example.petstore;
 
-import com.example.petstore.domain.Item;
+import com.example.petstore.domain.Member;
 import com.example.petstore.domain.CustomerUpdated;
 import com.example.petstore.domain.MemberRepository;
 import com.example.petstore.kafka.KafkaProcessor;

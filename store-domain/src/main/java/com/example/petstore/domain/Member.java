@@ -25,7 +25,7 @@ public class Member {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -33,7 +33,7 @@ public class Member {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -41,7 +41,7 @@ public class Member {
         return curPhoto;
     }
 
-    public void setCurPhoto(Money curPhoto) {
+    public void setCurPhoto(String curPhoto) {
         this.curPhoto = curPhoto;
    }
 
@@ -49,7 +49,7 @@ public class Member {
         return partyRole;
     }
 
-    public void setPartyRole(int partyRole) {
+    public void setPartyRole(String partyRole) {
         this.partyRole = partyRole;
     }
 
