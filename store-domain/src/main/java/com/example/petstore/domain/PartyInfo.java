@@ -18,6 +18,11 @@ public class PartyInfo {
     @Id  @GeneratedValue
     Long id;
     PartyStatus partyStatus;
+    String driver;
+    String startPlace;
+    String endPlace;
+    String price;
+    
         public Long getId() {
             return id;
         }
