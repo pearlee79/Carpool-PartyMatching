@@ -8,22 +8,45 @@ import javax.persistence.Id;
 @Entity
 public class ReviewInfo {
     @Id
-    String id;
-
-    @Embedded
-    Address address;
+    Long id;
+    Long customerId;
+    Long reviewScore;
+    String comment;
+    Long reviewId;
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
     public void setId(String id) {
         this.id = id;
     }
-    public Address getAddress() {
-        return address;
+
+    public Long getCustomerId() {
+        return customerId;
     }
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Long getReviewScore() {
+        return reviewScore;
+    }
+    public void setReviewScore(Long reviewScore) {
+        this.reviewScore = reviewScore;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Long getReviewId() {
+        return reviewId;
+    }
+    public void setReviewId(Long reviewId) {
+        this.reviewId = reviewId;
     }
 
     
