@@ -30,6 +30,42 @@ public class PartyInfo {
             this.id = id;
         }
 
+        public PartyStatus getPartyStatus() {
+            return partyStatus;
+        }
+        public void setPartyStatus(String partyStatus) {
+            this.partyStatus = partyStatus;
+        }
+
+        public String getDriver() {
+            return driver;
+        }
+        public void setDriver(String driver) {
+            this.driver = driver;
+        }
+
+        public String getStartPlace() {
+            return startPlace;
+        }
+        public void setStartPlace(String startPlace) {
+            this.startPlace = startPlace;
+        }
+
+        public String getEndPlace() {
+            return endPlace;
+        }
+
+        public void setEndPlace(String endPlace) {
+            this.endPlace = endPlace;
+        }
+
+        public String getPrice() {
+            return price;
+        }
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
 
     @OneToMany
     List<Member> partyMembers;

@@ -23,5 +23,22 @@ public class StoreApplication {
 		applicationContext = SpringApplication.run(StoreApplication.class, args);
 	}
 
+	@Autowired
+	PartyInfoRepository partyInfoRepository;
+
+	@Autowired
+	MemberRepository memberRepository;
+
+
+
+	@RequestMapping(method = RequestMethod.PUT, path="s/{partyInfoId}/apply")
+	public String applyParty(@PathVariable(value = "partyInfoId") Long partyInfoId){
+
+		PartyInfo theParty = partyInfoRepository.findById(partyInfoId).get();
+
+		partyInfoRepository.save(theParty);
+
+		return "파티 신청이 완료되었습니다.";
+	}
 
 }
