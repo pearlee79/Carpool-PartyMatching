@@ -25,7 +25,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: partyMatch
+          group: store
           destination: petstore
           contentType: application/json
         event-out:
@@ -55,7 +55,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: partyMatch
+          group: store
           destination: petstore
           contentType: application/json
         event-out:
