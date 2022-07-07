@@ -13,9 +13,6 @@ pip install httpie
 ```
 
 
-'''
-test
-'''
 ## Kafka 의 접속
 ### Docker Compose 이용 (도커 있을 때 강추)
 - Kafka 의 실행 (Docker Compose)
@@ -25,7 +22,7 @@ docker-compose up -d     # docker-compose 가 모든 kafka 관련 리소스를 �
 ```
 - Kafka 정상 실행 확인
 ```
-$ docker-compose logs kafka | grep -i started    
+$ docker-compose logs kafka | grep -i started
 
 kafka-kafka-1  | [2022-04-21 22:07:03,262] INFO [KafkaServer id=1] started (kafka.server.KafkaServer)
 ```
@@ -125,7 +122,7 @@ http "http://localhost:8083/items" apperance=2 health=1 price[currency]="EURO" p
 http PATCH "http://localhost:8083/items/1" price[amount]=1000 price[currrency]=WON
 ```
 
-- 아까 등록한 두마리를 입양해본다. 이때는 하나의 Aggregate 이므로 한번에 등록이 되어야 한다. 
+- 아까 등록한 두마리를 입양해본다. 이때는 하나의 Aggregate 이므로 한번에 등록이 되어야 한다.
 ```javascript
 http :8083/cartItems customer="http://localhost:8083/customers/park@naver.com" items[]="http://localhost:8083/items/1" items[]="http://localhost:8083/items/2"
 ```
@@ -183,7 +180,7 @@ npm run serve
 
 
   App running at:
-  - Local:   http://localhost:8084/ 
+  - Local:   http://localhost:8084/
   - Network: http://10.0.5.2:8084/
 
   Note that the development build is not optimized.
@@ -245,13 +242,13 @@ docker build -t <도커허브계정이름>/pet:v1 .
 docker run <도커허브계정이름>/pet:v1
 
 docker login
-docker push <도커허브계정이름>/pet:v1 
+docker push <도커허브계정이름>/pet:v1
 ```
 
 
 ## kafka 설치하기
 
-### Helm 
+### Helm
 
 Helm(패키지 인스톨러) 설치
 - Helm 3.x 설치(권장)
