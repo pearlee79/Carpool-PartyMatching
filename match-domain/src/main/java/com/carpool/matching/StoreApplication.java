@@ -1,4 +1,4 @@
-package com.example.petstore;
+package com.carpool.matching;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
-import com.example.petstore.domain.*;
+import com.carpool.matching.domain.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.example.petstore.kafka.KafkaProcessor;
+import com.carpool.matching.kafka.KafkaProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -53,7 +53,6 @@ public class StoreApplication {
 
 		PartyInfo theParty = partyInfoRepository.findById(partyInfoId).get();
 
-		partyInfoRepository.addMember();
 		partyInfoRepository.save(theParty);
 
 		return "파티 신청이 완료되었습니다.";
