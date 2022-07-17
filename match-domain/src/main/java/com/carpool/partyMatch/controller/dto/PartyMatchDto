@@ -1,0 +1,17 @@
+package com.carpool.partyMatch.controller.dto;
+
+import lombok.Data;
+
+/**
+ * @author seoyeon on 2021/05/11
+ * @project skparking
+ */
+
+@Data
+public class PartyMatchDto {
+
+  private Long memberId;
+
+  private Long partyInfoId;
+
+}

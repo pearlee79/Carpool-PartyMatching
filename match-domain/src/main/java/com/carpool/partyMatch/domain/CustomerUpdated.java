@@ -1,5 +1,5 @@
-package com.carpool.matching.domain;
-import com.carpool.matching.AbstractEvent;
+package com.carpool.partyMatch.domain;
+import com.carpool.partyMatch.AbstractEvent;
 
 public class CustomerUpdated extends AbstractEvent{
     Long id;

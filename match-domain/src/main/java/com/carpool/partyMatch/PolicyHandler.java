@@ -1,9 +1,9 @@
-package com.carpool.matching;
+package com.carpool.partyMatch;
 
-import com.carpool.matching.domain.Member;
-import com.carpool.matching.domain.CustomerUpdated;
-import com.carpool.matching.domain.MemberRepository;
-import com.carpool.matching.kafka.KafkaProcessor;
+import com.carpool.partyMatch.domain.Member;
+import com.carpool.partyMatch.domain.CustomerUpdated;
+import com.carpool.partyMatch.domain.MemberRepository;
+import com.carpool.partyMatch.kafka.KafkaProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;

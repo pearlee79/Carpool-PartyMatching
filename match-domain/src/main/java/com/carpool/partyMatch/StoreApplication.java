@@ -1,4 +1,4 @@
-package com.carpool.matching;
+package com.carpool.partyMatch;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
-import com.carpool.matching.domain.*;
+import com.carpool.partyMatch.domain.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.carpool.matching.kafka.KafkaProcessor;
+import com.carpool.partyMatch.kafka.KafkaProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -48,14 +48,14 @@ public class StoreApplication {
 	PartyInfoRepository partyInfoRepository;
 
 
-	@RequestMapping(method = RequestMethod.PUT, path="partyInfoes/{partyInfoId}/apply")
-	public String applyParty(@PathVariable(value = "partyInfoId") Long partyInfoId){
+	// @RequestMapping(method = RequestMethod.PUT, path="partyInfoes/{partyInfoId}/apply")
+	// public String applyParty(@PathVariable(value = "partyInfoId") Long partyInfoId){
 
-		PartyInfo theParty = partyInfoRepository.findById(partyInfoId).get();
+	// 	PartyInfo theParty = partyInfoRepository.findById(partyInfoId).get();
 
-		partyInfoRepository.save(theParty);
+	// 	partyInfoRepository.save(theParty);
 
-		return "파티 신청이 완료되었습니다.";
-	}
+	// 	return "파티 신청이 완료되었습니다.";
+	// }
 
 }

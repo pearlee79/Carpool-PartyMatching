@@ -1,4 +1,4 @@
-package com.carpool.matching.domain;
+package com.carpool.partyMatch.domain;
 
 import java.io.Serializable;
 
@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 public class Member {
 
     @Id @GeneratedValue
+    @Column(name = "member_id")
     Long id;
     String name;
     String gender;
@@ -19,7 +20,6 @@ public class Member {
     String partyRole;
     Long customerId;
     Long curPartyId;
-    MemberStatus memberStatus;
 
     public String getName() {
         return name;

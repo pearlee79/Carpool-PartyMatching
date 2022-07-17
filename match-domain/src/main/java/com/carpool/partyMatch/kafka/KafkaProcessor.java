@@ -1,4 +1,4 @@
-package com.carpool.matching.kafka;
+package com.carpool.partyMatch.kafka;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;

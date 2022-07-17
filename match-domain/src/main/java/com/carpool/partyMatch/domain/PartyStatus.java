@@ -1,4 +1,4 @@
-package com.carpool.matching.domain;
+package com.carpool.partyMatch.domain;
 
 public enum PartyStatus{
     FULL,

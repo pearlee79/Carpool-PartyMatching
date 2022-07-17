@@ -1,4 +1,4 @@
-package com.carpool.matching.domain;
+package com.carpool.partyMatch.domain;
 
 //import java.util.List;
 
@@ -13,10 +13,12 @@ import java.util.List;
 
 
 @Entity
-public class PartyInfo {
+public class Party {
 
     @Id  @GeneratedValue
+    @Column(name = "party_id")
     Long id;
+    Long partyInfoId;
     PartyStatus partyStatus;
     String driver;
     String startPlace;
@@ -65,15 +67,4 @@ public class PartyInfo {
         public void setPrice(String price) {
             this.price = price;
         }
-
-
-    @OneToMany
-    List<Member> partyMembers;
-        public List<Member> getPartyMembers() {
-            return partyMembers;
-        }
-        public void setPartyMembers(List<Member> partyMembers) {
-            this.partyMembers = partyMembers;
-        }
-
 }
