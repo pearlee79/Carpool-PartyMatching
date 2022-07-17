@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.query.Param;
 
-import com.carpool.partyMatch.domain.dto.PartyMatchDto;
-import com.carpool.partyMatch.domain.entity.PartyMatch;
+
+import com.carpool.partyMatch.domain.MatchInfo;
 
 
 /**
@@ -13,7 +13,7 @@ import com.carpool.partyMatch.domain.entity.PartyMatch;
  * @project parkingsk.member
  */
 
-public interface PartyMatchService {
+public interface MatchInfoService {
 
 //  Booking findBookingById(Long id);
 

@@ -2,7 +2,7 @@ package com.carpool.partyMatch;
 
 import com.carpool.partyMatch.domain.Member;
 import com.carpool.partyMatch.domain.CustomerUpdated;
-import com.carpool.partyMatch.domain.MemberRepository;
+import com.carpool.partyMatch.repository.MemberRepository;
 import com.carpool.partyMatch.kafka.KafkaProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -22,7 +22,7 @@ public class PolicyHandler {
         if(!customerUpdated.validate())
             return;
 
-        memberRepository.findByCustomerId(customerUpdated.getId()).ifPresent(member->{
+        memberRepository.findByMemberId(customerUpdated.getId()).ifPresent(member->{
             member.setName(customerUpdated.getName());
             member.setGender(customerUpdated.getGender());
             member.setCurPhoto(customerUpdated.getCurPhoto());

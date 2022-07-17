@@ -2,6 +2,9 @@ package com.carpool.partyMatch.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,7 +34,7 @@ public class MatchInfo {
             return member;
         }
         public void setMember(Member member) {
-            this.Member = member;
+            this.member = member;
         }
 
   @ManyToOne(fetch = FetchType.LAZY)

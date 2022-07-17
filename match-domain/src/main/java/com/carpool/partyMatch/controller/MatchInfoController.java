@@ -14,21 +14,23 @@ import lombok.RequiredArgsConstructor;
 import com.carpool.partyMatch.domain.MatchStatus;
 import com.carpool.partyMatch.domain.Party;
 import com.carpool.partyMatch.domain.MatchInfo;
-import com.carpool.partyMatch.service.PartyMatchService;
+import com.carpool.partyMatch.service.MatchInfoService;
+
 
 @RestController
 @RequiredArgsConstructor
-public class PartyMatchController {
+public class MatchInfoController {
+
 
   @Autowired
-	private PartyMatchService partyMatchService;
+	private MatchInfoService MatchInfoService;
 
   @PostMapping("/matches/applyParty")
-	  public void applyParty(@RequestBody PartyMatchDto partyMatchDto) {
+	  public void applyParty() {
 
       try{
-        MatchInfo matchInfo = new MatchInfo();
-        matchInfo.setMatchStatus(MatchStatus.WATING);
+        MatchInfo partyMatch = new MatchInfo();
+        partyMatch.setMatchStatus(MatchStatus.WATING);
       }
       catch(Exception e){
 

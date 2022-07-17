@@ -5,13 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.carpool.partyMatch.repository.MemberRepository;
-
+import com.carpool.partyMatch.service.MatchInfoService;
 
 @Service
 @RequiredArgsConstructor
-public class PartyMatchServiceImpl implements MemberService {
+public class MatchInfoServiceImpl implements MatchInfoService {
 
-  private final PartyMatchRepository partyMatchRepository;
+  private final MemberRepository memberRepository;
  // private final RestTemplate restTemplate;
 
 }

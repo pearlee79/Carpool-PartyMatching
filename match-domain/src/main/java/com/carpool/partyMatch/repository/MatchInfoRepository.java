@@ -1,15 +1,13 @@
 package com.carpool.partyMatch.repository;
 
-import com.carpool.partyMatch.domain.*;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.CrudRepository;
-import com.carpool.partyMatch.domain.Party;
+import com.carpool.partyMatch.domain.MatchInfo;
 
-
-public interface PartyRepository extends CrudRepository<Party, Long>{    // Repository Pattern Interface
+public interface MatchInfoRepository extends CrudRepository<MatchInfo, Long>{    // Repository Pattern Interface
 
 }

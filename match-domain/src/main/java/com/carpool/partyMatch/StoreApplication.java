@@ -44,8 +44,8 @@ public class StoreApplication {
 		applicationContext = SpringApplication.run(StoreApplication.class, args);
 	}
 
-	@Autowired
-	PartyInfoRepository partyInfoRepository;
+	// @Autowired
+	// PartyInfoRepository partyInfoRepository;
 
 
 	// @RequestMapping(method = RequestMethod.PUT, path="partyInfoes/{partyInfoId}/apply")
