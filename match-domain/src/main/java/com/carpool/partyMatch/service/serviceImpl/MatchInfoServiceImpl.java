@@ -11,7 +11,14 @@ import com.carpool.partyMatch.service.MatchInfoService;
 @RequiredArgsConstructor
 public class MatchInfoServiceImpl implements MatchInfoService {
 
-  private final MemberRepository memberRepository;
+  private final MatchInfoRepository matchInfoRepository;
  // private final RestTemplate restTemplate;
 
+ @Override
+    public ParkingLot registerParkingLot(MatchInfoDTO matchInfoDTO){
+        log.info("********* registerMatchInfo *********");
+        log.debug(String.valueOf(matchInfoDTO));
+
+        return matchInfoRepository.save(parkingLot);
+    }
 }

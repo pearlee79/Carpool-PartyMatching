@@ -8,15 +8,11 @@ import org.springframework.data.repository.query.Param;
 import com.carpool.partyMatch.domain.MatchInfo;
 
 
-/**
- * @author seoyeon on 2021/05/07
- * @project parkingsk.member
- */
-
 public interface MatchInfoService {
 
-//  Booking findBookingById(Long id);
+  public List<MatchInfo> findMatchInfoListByPartyId(Long partyId);
 
-//  int getAvailableCount(Booking booking);
+  public MatchInfo registerMatchInfo(MatchInfoDTO matchInfoDTO);
 
+  public MatchInfo updateMatchInfo(MatchInfoDTO matchInfoDTO);
 }

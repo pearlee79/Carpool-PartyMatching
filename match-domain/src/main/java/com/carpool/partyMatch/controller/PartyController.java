@@ -19,38 +19,22 @@ import com.carpool.partyMatch.service.MatchInfoService;
 
 @RestController
 @RequiredArgsConstructor
-public class MatchInfoController {
+public class PartyController {
 
 
   @Autowired
-	private MatchInfoService MatchInfoService;
+	private PartyService partyService;
 
-  //파티 신청
-  @PostMapping("/matches/apply")
-	public MatchInfo applyParty(@RequestParam(required = false) Long partyId,
+  //파티 시작
+  @PostMapping("/parties/{partyInfoId}/start")
+	public Party startParty(@PathVariable(value = "partyInfoId") Long partyInfoId,
                                       @RequestParam(required = false) Long userId) {
 	}
 
-  //파티 신청 취소
-  @PostMapping("/matches/cancel")
-	public MatchInfo cancelPartyApplication(@RequestParam(required = false) Long partyId,
+  //파티 종료
+  @PostMapping("/parties/{{partyInfoId}/close")
+	public Party closeParty(@PathVariable(value = "partyInfoId") Long partyInfoId,
                                       @RequestParam(required = false) Long userId) {
-
-	}
-
-  //파티 신청 수락
-  @PostMapping("/matches/accept")
-	public MatchInfo acceptPartyApplication(@RequestParam(required = false) Long partyId,
-                                      @RequestParam(required = false) Long userId) {
-
-
-	}
-
-  //파티 신청 거절
-  @PostMapping("/matches/deny")
-	public MatchInfo denyPartyApplication(@RequestParam(required = false) Long partyId,
-                                      @RequestParam(required = false) Long userId) {
-
 	}
 
 }
