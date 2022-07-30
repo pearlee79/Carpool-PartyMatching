@@ -9,7 +9,10 @@ public class Party {
     @Id @GeneratedValue
     Long id;
     Long partyInfoId;
+
+    @Embedded
     Driver driver;
+
     PartyStatus partyStatus;
 
         public Long getId() {

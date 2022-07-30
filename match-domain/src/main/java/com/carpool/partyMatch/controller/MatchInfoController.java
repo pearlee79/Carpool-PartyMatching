@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 import com.carpool.partyMatch.domain.MatchStatus;
 import com.carpool.partyMatch.domain.Party;
+import com.carpool.partyMatch.controller.dto.MatchInfoDto;
 import com.carpool.partyMatch.domain.MatchInfo;
 import com.carpool.partyMatch.service.MatchInfoService;
 
@@ -21,36 +22,50 @@ import com.carpool.partyMatch.service.MatchInfoService;
 @RequiredArgsConstructor
 public class MatchInfoController {
 
+  final private MatchInfoService matchInfoService;
 
   @Autowired
 	private MatchInfoService MatchInfoService;
 
+  //파티 매칭 정보 조회
+  @PostMapping("/matches/{partyInfoId}")
+	public List<MatchInfo> getMatchUser(@PathVariable Long partyInfoId) {
+    return matchInfoService.findMatchUser(partyInfoId);
+	}
+
   //파티 신청
   @PostMapping("/matches/apply")
-	public MatchInfo applyParty(@RequestParam(required = false) Long partyId,
-                                      @RequestParam(required = false) Long userId) {
+	public MatchInfo applyParty(@RequestBody MatchInfoDto matchInfoDto) {
+    log.info("***************** MatchInfoController : 파티 신청 Postmapping 호출 *****************");
+    matchInfoService.registerMatchInfo(matchInfoDto);
 	}
 
   //파티 신청 취소
   @PostMapping("/matches/cancel")
-	public MatchInfo cancelPartyApplication(@RequestParam(required = false) Long partyId,
-                                      @RequestParam(required = false) Long userId) {
+	public MatchInfo cancelPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
 
 	}
 
   //파티 신청 수락
   @PostMapping("/matches/accept")
-	public MatchInfo acceptPartyApplication(@RequestParam(required = false) Long partyId,
-                                      @RequestParam(required = false) Long userId) {
-
+	public MatchInfo acceptPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
 
 	}
 
   //파티 신청 거절
   @PostMapping("/matches/deny")
-	public MatchInfo denyPartyApplication(@RequestParam(required = false) Long partyId,
-                                      @RequestParam(required = false) Long userId) {
+	public MatchInfo denyPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
 
+	}
+
+  //파티 시작
+  @PostMapping("/matches/partyStart")
+	public Party startParty() {
+	}
+
+  //파티 종료
+  @PostMapping("/matches/partyClose")
+	public Party closeParty() {
 	}
 
 }

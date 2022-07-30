@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.carpool.partyMatch.domain.MatchInfo;
 
 public interface MatchInfoRepository extends CrudRepository<MatchInfo, Long>{    // Repository Pattern Interface
-
+  MatchInfo findByPartyInfoIdAndUserId(Long partyInfoId, Long userId);
 }

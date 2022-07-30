@@ -14,5 +14,5 @@ public interface MatchInfoService {
 
   public MatchInfo registerMatchInfo(MatchInfoDTO matchInfoDTO);
 
-  public MatchInfo updateMatchInfo(MatchInfoDTO matchInfoDTO);
+  public MatchInfo canMatchInfo(MatchInfoDTO matchInfoDTO);
 }

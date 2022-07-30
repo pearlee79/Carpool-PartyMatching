@@ -17,8 +17,7 @@ public class MatchInfo {
   @Id @GeneratedValue
   Long id;
 
-  @Embedded
-  Party party;
+  Long partyInfoId;
 
   @Embedded
   Carpooler carpooler;
