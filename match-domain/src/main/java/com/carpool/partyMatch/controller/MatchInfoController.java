@@ -43,29 +43,31 @@ public class MatchInfoController {
   //파티 신청 취소
   @PostMapping("/matches/cancel")
 	public MatchInfo cancelPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
-
+    matchInfoService.cancelMatchInfo(matchInfoDto);
 	}
 
   //파티 신청 수락
   @PostMapping("/matches/accept")
-	public MatchInfo acceptPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
-
+	public MatchInfo acceptPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
+    matchInfoService.acceptMatchInfo(matchInfoDto);
 	}
 
   //파티 신청 거절
   @PostMapping("/matches/deny")
-	public MatchInfo denyPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
-
+	public MatchInfo denyPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
+    matchInfoService.denyMatchInfo(matchInfoDto);
 	}
 
   //파티 시작
   @PostMapping("/matches/partyStart")
-	public Party startParty() {
+	public Party startParty(@RequestBody MatchProcessDto matchProcessDto) {
+    matchInfoService.startParty(matchInfoDto);
 	}
 
   //파티 종료
   @PostMapping("/matches/partyClose")
-	public Party closeParty() {
+	public Party closeParty(@RequestBody MatchProcessDto matchProcessDto) {
+    matchInfoService.closeParty(matchInfoDto);
 	}
 
 }
