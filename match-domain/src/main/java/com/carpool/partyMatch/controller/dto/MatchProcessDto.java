@@ -9,6 +9,5 @@ public class MatchProcessDto {
   private Long driverId;
   private String driverName;
   private Long userId;
-  private String userName;
 
 }

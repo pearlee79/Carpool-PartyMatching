@@ -7,6 +7,5 @@ public class MatchInfoDto {
 
   private Long partyInfoId;
   private Long userId;
-  private String userName;
 
 }

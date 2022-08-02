@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import javax.persistence.Embedded;
+import javax.persistence.AttributeOverride;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -19,8 +20,7 @@ public class MatchInfo {
 
   Long partyInfoId;
 
-  @Embedded
-  Carpooler carpooler;
+  Long userId;
 
   MatchStatus matchStatus;
 
@@ -32,12 +32,12 @@ public class MatchInfo {
         this.partyInfoId = partyInfoId;
     }
 
-    public Carpooler getCarpooler() {
-        return carpooler;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setCarpooler(Carpooler carpooler) {
-        this.carpooler = carpooler;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public MatchStatus getMatchStatus() {

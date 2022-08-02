@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.transaction.annotation.Transactional;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 /**
@@ -34,6 +35,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @SpringBootApplication
+@EnableSwagger2
 @RestController
 @EnableAspectJAutoProxy
 @EnableBinding(KafkaProcessor.class)

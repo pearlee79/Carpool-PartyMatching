@@ -44,7 +44,7 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         //파티 상태 확인 (시작 또는 종료이면 신청 불가)
         MatchInfo matchInfo = new MatchInfo();
         matchInfo.setPartyInfoId(matchInfoDto.getPartyInfoId());
-        matchInfo.setCarpooler(new Carpooler(matchInfoDto.getUserId(), matchInfoDto.getUserName()));
+        matchInfo.setUserId(matchInfoDto.getUserId());
         matchInfo.setMatchStatus(MatchStatus.WATING);
 
         return matchInfoRepository.save(matchInfo);
@@ -68,13 +68,12 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         // log.debug(String.valueOf(matchProcessDto));
 
         Party party = partyRepository.findByPartyInfoId(matchProcessDto.getPartyInfoId());
-        MatchInfo matchInfo;
+        MatchInfo matchInfo =  matchInfoRepository.findByPartyInfoIdAndUserId(matchProcessDto.getPartyInfoId(), matchProcessDto.getUserId());
 
         //운전자 확인 또는 세션 확인
         Driver driver = party.getDriver();
 
         if(matchProcessDto.getDriverId() == driver.getDriverId()){
-            matchInfo = matchInfoRepository.findByPartyInfoIdAndUserId(matchProcessDto.getPartyInfoId(), matchProcessDto.getUserId());
             matchInfo.setMatchStatus(MatchStatus.ACCEPT);
         }
 
@@ -91,13 +90,12 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         // log.debug(String.valueOf(matchProcessDto));
 
         Party party = partyRepository.findByPartyInfoId(matchProcessDto.getPartyInfoId());
-        MatchInfo matchInfo;
+        MatchInfo matchInfo = matchInfoRepository.findByPartyInfoIdAndUserId(matchProcessDto.getPartyInfoId(), matchProcessDto.getUserId());
 
         //운전자 확인 또는 세션 확인
         Driver driver = party.getDriver();
 
         if(matchProcessDto.getDriverId() == driver.getDriverId()){
-            matchInfo = matchInfoRepository.findByPartyInfoIdAndUserId(matchProcessDto.getPartyInfoId(), matchProcessDto.getUserId());
             matchInfo.setMatchStatus(MatchStatus.DENY);
         }
 

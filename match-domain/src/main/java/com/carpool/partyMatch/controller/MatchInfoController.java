@@ -39,25 +39,25 @@ public class MatchInfoController {
   @PostMapping("/matches/apply")
 	public MatchInfo applyParty(@RequestBody MatchInfoDto matchInfoDto) {
     // log.info("***************** MatchInfoController : 파티 신청 Postmapping 호출 *****************");
-    matchInfoService.registerMatchInfo(matchInfoDto);
+    return matchInfoService.registerMatchInfo(matchInfoDto);
 	}
 
   //파티 신청 취소
   @PostMapping("/matches/cancel")
 	public MatchInfo cancelPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
-    matchInfoService.cancelMatchInfo(matchInfoDto);
+    return matchInfoService.cancelMatchInfo(matchInfoDto);
 	}
 
   //파티 신청 수락
   @PostMapping("/matches/accept")
 	public MatchInfo acceptPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
-    matchInfoService.acceptMatchInfo(matchProcessDto);
+    return matchInfoService.acceptMatchInfo(matchProcessDto);
 	}
 
   //파티 신청 거절
   @PostMapping("/matches/deny")
 	public MatchInfo denyPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
-    matchInfoService.denyMatchInfo(matchProcessDto);
+    return matchInfoService.denyMatchInfo(matchProcessDto);
 	}
 
   //파티 시작
