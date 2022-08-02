@@ -2,7 +2,7 @@ package com.carpool.partyMatch;
 
 import com.carpool.partyMatch.domain.Carpooler;
 import com.carpool.partyMatch.domain.CustomerUpdated;
-import com.carpool.partyMatch.repository.MemberRepository;
+// import com.carpool.partyMatch.repository.MemberRepository;
 import com.carpool.partyMatch.kafka.KafkaProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -11,25 +11,25 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PolicyHandler {
-    @Autowired
-    MemberRepository memberRepository;
+    // @Autowired
+    // MemberRepository memberRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString){}
 
-    @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverCustomerUpdate_updateMember(@Payload CustomerUpdated customerUpdated){
-        if(!customerUpdated.validate())
-            return;
+    // @StreamListener(KafkaProcessor.INPUT)
+    // public void wheneverCustomerUpdate_updateMember(@Payload CustomerUpdated customerUpdated){
+    //     if(!customerUpdated.validate())
+    //         return;
 
-        memberRepository.findByMemberId(customerUpdated.getId()).ifPresent(member->{
-            member.setName(customerUpdated.getName());
-            member.setGender(customerUpdated.getGender());
-            member.setCurPhoto(customerUpdated.getCurPhoto());
-            memberRepository.save(member);
-        });
+    //     memberRepository.findByMemberId(customerUpdated.getId()).ifPresent(member->{
+    //         member.setName(customerUpdated.getName());
+    //         member.setGender(customerUpdated.getGender());
+    //         member.setCurPhoto(customerUpdated.getCurPhoto());
+    //         memberRepository.save(member);
+    //     });
 
-    }
+
 
     ///// *** Example ****
 

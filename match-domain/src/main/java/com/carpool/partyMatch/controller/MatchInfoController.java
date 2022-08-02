@@ -1,5 +1,6 @@
 package com.carpool.partyMatch.controller;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import com.carpool.partyMatch.domain.MatchStatus;
 import com.carpool.partyMatch.domain.Party;
 import com.carpool.partyMatch.controller.dto.MatchInfoDto;
+import com.carpool.partyMatch.controller.dto.MatchProcessDto;
 import com.carpool.partyMatch.domain.MatchInfo;
 import com.carpool.partyMatch.service.MatchInfoService;
 
@@ -36,7 +38,7 @@ public class MatchInfoController {
   //파티 신청
   @PostMapping("/matches/apply")
 	public MatchInfo applyParty(@RequestBody MatchInfoDto matchInfoDto) {
-    log.info("***************** MatchInfoController : 파티 신청 Postmapping 호출 *****************");
+    // log.info("***************** MatchInfoController : 파티 신청 Postmapping 호출 *****************");
     matchInfoService.registerMatchInfo(matchInfoDto);
 	}
 
@@ -49,25 +51,25 @@ public class MatchInfoController {
   //파티 신청 수락
   @PostMapping("/matches/accept")
 	public MatchInfo acceptPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
-    matchInfoService.acceptMatchInfo(matchInfoDto);
+    matchInfoService.acceptMatchInfo(matchProcessDto);
 	}
 
   //파티 신청 거절
   @PostMapping("/matches/deny")
 	public MatchInfo denyPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
-    matchInfoService.denyMatchInfo(matchInfoDto);
+    matchInfoService.denyMatchInfo(matchProcessDto);
 	}
 
   //파티 시작
   @PostMapping("/matches/partyStart")
-	public Party startParty(@RequestBody MatchProcessDto matchProcessDto) {
-    matchInfoService.startParty(matchInfoDto);
+	public void startParty(@RequestBody MatchProcessDto matchProcessDto) {
+    matchInfoService.startParty(matchProcessDto);
 	}
 
   //파티 종료
   @PostMapping("/matches/partyClose")
-	public Party closeParty(@RequestBody MatchProcessDto matchProcessDto) {
-    matchInfoService.closeParty(matchInfoDto);
+	public void closeParty(@RequestBody MatchProcessDto matchProcessDto) {
+    matchInfoService.closeParty(matchProcessDto);
 	}
 
 }

@@ -2,7 +2,14 @@ package com.carpool.partyMatch.domain;
 
 //import java.util.List;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import java.util.List;
 
 @Entity
 public class Party {
@@ -31,11 +38,11 @@ public class Party {
             this.partyStatus = partyStatus;
         }
 
-        public Long getDriver() {
+        public Driver getDriver() {
             return driver;
         }
 
-        public void setDriver(Long driver) {
+        public void setDriver(Driver driver) {
             this.driver = driver;
         }
 }

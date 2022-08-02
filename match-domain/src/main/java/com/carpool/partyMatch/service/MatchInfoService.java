@@ -4,15 +4,23 @@ import java.util.List;
 
 import org.springframework.data.repository.query.Param;
 
-
 import com.carpool.partyMatch.domain.MatchInfo;
-
+import com.carpool.partyMatch.controller.dto.MatchInfoDto;
+import com.carpool.partyMatch.controller.dto.MatchProcessDto;
 
 public interface MatchInfoService {
 
-  public List<MatchInfo> findMatchInfoListByPartyId(Long partyId);
+  public List<MatchInfo> findMatchUser(Long partyInfoId);
 
-  public MatchInfo registerMatchInfo(MatchInfoDTO matchInfoDTO);
+  public MatchInfo registerMatchInfo(MatchInfoDto matchInfoDto);
 
-  public MatchInfo cancelMatchInfo(MatchInfoDTO matchInfoDTO);
+  public MatchInfo cancelMatchInfo(MatchInfoDto matchInfoDto);
+
+  public MatchInfo acceptMatchInfo(MatchProcessDto matchProcessDto);
+
+  public MatchInfo denyMatchInfo(MatchProcessDto matchProcessDto);
+
+  public void startParty(MatchProcessDto matchProcessDto);
+
+  public void closeParty(MatchProcessDto matchProcessDto);
 }

@@ -24,12 +24,12 @@ public class MatchInfo {
 
   MatchStatus matchStatus;
 
-    public Party getParty() {
-        return party;
+    public Long getPartyInfoId() {
+        return partyInfoId;
     }
 
-    public void setParty(Party party) {
-        this.party = party;
+    public void setPartyInfoId(Long partyInfoId) {
+        this.partyInfoId = partyInfoId;
     }
 
     public Carpooler getCarpooler() {
