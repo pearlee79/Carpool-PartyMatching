@@ -2,6 +2,7 @@ package com.carpool.partyMatch.controller;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Description;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,10 @@ import com.carpool.partyMatch.domain.MatchStatus;
 import com.carpool.partyMatch.domain.Party;
 import com.carpool.partyMatch.controller.dto.MatchInfoDto;
 import com.carpool.partyMatch.controller.dto.MatchProcessDto;
+import com.carpool.partyMatch.controller.dto.MatchInfoListResponse;
 import com.carpool.partyMatch.domain.MatchInfo;
 import com.carpool.partyMatch.service.MatchInfoService;
+
 
 
 @RestController
@@ -29,47 +32,66 @@ public class MatchInfoController {
   @Autowired
 	private MatchInfoService MatchInfoService;
 
-  //파티 매칭 정보 조회
+  @Description("파티 매칭 정보 조회")
   @PostMapping("/matches/{partyInfoId}")
-	public List<MatchInfo> getMatchUser(@PathVariable Long partyInfoId) {
-    return matchInfoService.findMatchUser(partyInfoId);
+	public ResponseEntity<MatchInfoListResponse> getMatchUser(@PathVariable Long partyInfoId) {
+
+    // return matchInfoService.findMatchUser(partyInfoId);
+    List<MatchInfo> matchInfo = matchInfoService.findMatchUser(partyInfoId);
+    MatchInfoListResponse response = new MatchInfoListResponse(matchInfo);
+    return ResponseEntity.ok(response);
 	}
 
-  //파티 신청
+  @Description("파티 신청")
   @PostMapping("/matches/apply")
-	public MatchInfo applyParty(@RequestBody MatchInfoDto matchInfoDto) {
+	public ResponseEntity<MatchInfoDto> applyParty(@RequestBody MatchInfoDto matchInfoDto) {
     // log.info("***************** MatchInfoController : 파티 신청 Postmapping 호출 *****************");
-    return matchInfoService.registerMatchInfo(matchInfoDto);
+    matchInfoService.registerMatchInfo(matchInfoDto);
+
+    return ResponseEntity.ok(matchInfoDto);
 	}
 
-  //파티 신청 취소
+  @Description("파티 신청 취소")
   @PostMapping("/matches/cancel")
-	public MatchInfo cancelPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
-    return matchInfoService.cancelMatchInfo(matchInfoDto);
+	public ResponseEntity<MatchInfoDto> cancelPartyApplication(@RequestBody MatchInfoDto matchInfoDto) {
+
+    matchInfoService.cancelMatchInfo(matchInfoDto);
+
+    return ResponseEntity.ok(matchInfoDto);
 	}
 
-  //파티 신청 수락
+  @Description("파티 신청 수락")
   @PostMapping("/matches/accept")
-	public MatchInfo acceptPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
-    return matchInfoService.acceptMatchInfo(matchProcessDto);
+	public ResponseEntity<MatchProcessDto> acceptPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
+
+    matchInfoService.acceptMatchInfo(matchProcessDto);
+
+    return ResponseEntity.ok(matchProcessDto);
 	}
 
-  //파티 신청 거절
+  @Description("파티 신청 거절")
   @PostMapping("/matches/deny")
-	public MatchInfo denyPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
-    return matchInfoService.denyMatchInfo(matchProcessDto);
+	public ResponseEntity<MatchProcessDto> denyPartyApplication(@RequestBody MatchProcessDto matchProcessDto) {
+
+    matchInfoService.denyMatchInfo(matchProcessDto);
+
+    return ResponseEntity.ok(matchProcessDto);
 	}
 
-  //파티 시작
+  @Description("파티 시작")
   @PostMapping("/matches/partyStart")
 	public void startParty(@RequestBody MatchProcessDto matchProcessDto) {
     matchInfoService.startParty(matchProcessDto);
+
+    // return ResponseEntity.ok(matchProcessDto);
 	}
 
-  //파티 종료
+  @Description("파티 종료")
   @PostMapping("/matches/partyClose")
 	public void closeParty(@RequestBody MatchProcessDto matchProcessDto) {
     matchInfoService.closeParty(matchProcessDto);
+
+    // return ResponseEntity.ok(matchProcessDto);
 	}
 
 }

@@ -13,11 +13,14 @@ import com.carpool.partyMatch.domain.Carpooler;
 import com.carpool.partyMatch.domain.Driver;
 import com.carpool.partyMatch.domain.MatchStatus;
 import com.carpool.partyMatch.domain.PartyStatus;
-
 import com.carpool.partyMatch.repository.MatchInfoRepository;
 import com.carpool.partyMatch.repository.PartyRepository;
 import com.carpool.partyMatch.service.MatchInfoService;
+import com.carpool.partyMatch.exception.ApiException;
+import com.carpool.partyMatch.exception.ErrorCode;
 
+import java.lang.RuntimeException;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,12 +35,13 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         // log.info("********* findMatchUser *********");
         // log.debug(String.valueOf(matchInfoDto));
 
+        List<MatchInfo> matchInfoList = matchInfoRepository.findByPartyInfoIdAndMatchStatus(partyInfoId, MatchStatus.WATING);
 
-        return matchInfoRepository.findByPartyInfoIdAndMatchStatus(partyInfoId, MatchStatus.WATING);
+        return matchInfoList;
     }
 
     @Override
-    public MatchInfo registerMatchInfo(MatchInfoDto matchInfoDto){
+    public void registerMatchInfo(MatchInfoDto matchInfoDto){
         // log.info("********* registerMatchInfo *********");
         // log.debug(String.valueOf(matchInfoDto));
 
@@ -47,23 +51,25 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         matchInfo.setUserId(matchInfoDto.getUserId());
         matchInfo.setMatchStatus(MatchStatus.WATING);
 
-        return matchInfoRepository.save(matchInfo);
+        matchInfoRepository.save(matchInfo);
     }
 
     @Override
-    public MatchInfo cancelMatchInfo(MatchInfoDto matchInfoDto){
+    public void cancelMatchInfo(MatchInfoDto matchInfoDto){
         // log.info("********* cancelMatchInfo *********");
         // log.debug(String.valueOf(matchInfoDto));
 
         //파티 상태 확인 (시작 또는 종료이면 취소 불가)
         MatchInfo matchInfo = matchInfoRepository.findByPartyInfoIdAndUserId(matchInfoDto.getPartyInfoId(), matchInfoDto.getUserId());
+        // .orElseThrow(() -> new ApiException(ErrorCode.POSTS_NOT_FOUND));
+
         matchInfo.setMatchStatus(MatchStatus.CANCEL);
 
-        return matchInfoRepository.save(matchInfo);
+        matchInfoRepository.save(matchInfo);
     }
 
     @Override
-    public MatchInfo acceptMatchInfo(MatchProcessDto matchProcessDto){
+    public void acceptMatchInfo(MatchProcessDto matchProcessDto){
         // log.info("********* acceptMatchInfo *********");
         // log.debug(String.valueOf(matchProcessDto));
 
@@ -80,12 +86,12 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         //파티 수락 이벤트 발행
         // matchInfoProducer.sendMessage();
 
-        return matchInfoRepository.save(matchInfo);
+        matchInfoRepository.save(matchInfo);
     }
 
     //파티관리 서비스에서 신청 가능 인원 확인 후 신청 불가할 경우에도 아래 실행
     @Override
-    public MatchInfo denyMatchInfo(MatchProcessDto matchProcessDto){
+    public void denyMatchInfo(MatchProcessDto matchProcessDto){
         // log.info("********* denyMatchInfo *********");
         // log.debug(String.valueOf(matchProcessDto));
 
@@ -102,7 +108,7 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         //파티 수락 이벤트 발행
         // matchInfoProducer.sendMessage();
 
-        return matchInfoRepository.save(matchInfo);
+        matchInfoRepository.save(matchInfo);
     }
 
 

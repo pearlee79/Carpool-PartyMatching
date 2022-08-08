@@ -1,7 +1,10 @@
 server:
-  port: 8083
+  port: 8080
 
 ---
+
+server:
+  port: 8081
 
 spring:
   profiles: default
@@ -25,7 +28,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: store
+          group: pet
           destination: petstore
           contentType: application/json
         event-out:
@@ -38,13 +41,15 @@ logging:
     org.springframework.cloud: debug
 
 ---
+
+
 spring:
   profiles: docker
   cloud:
     stream:
       kafka:
         binder:
-          brokers: my-kafka:9092
+          brokers: kafka:9092
         streams:
           binder:
             configuration:
@@ -55,7 +60,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: store
+          group: pet
           destination: petstore
           contentType: application/json
         event-out:

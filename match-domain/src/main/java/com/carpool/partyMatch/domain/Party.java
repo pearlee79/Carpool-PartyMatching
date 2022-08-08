@@ -30,6 +30,14 @@ public class Party {
             this.id = id;
         }
 
+        public Long getPartyInfoId() {
+            return partyInfoId;
+        }
+
+        public void setPartyInfoId(Long partyInfoId) {
+            this.partyInfoId = partyInfoId;
+        }
+
         public PartyStatus getPartyStatus() {
             return partyStatus;
         }

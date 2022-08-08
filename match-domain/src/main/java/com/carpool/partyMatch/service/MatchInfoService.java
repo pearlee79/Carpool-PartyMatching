@@ -12,13 +12,13 @@ public interface MatchInfoService {
 
   public List<MatchInfo> findMatchUser(Long partyInfoId);
 
-  public MatchInfo registerMatchInfo(MatchInfoDto matchInfoDto);
+  public void registerMatchInfo(MatchInfoDto matchInfoDto);
 
-  public MatchInfo cancelMatchInfo(MatchInfoDto matchInfoDto);
+  public void cancelMatchInfo(MatchInfoDto matchInfoDto);
 
-  public MatchInfo acceptMatchInfo(MatchProcessDto matchProcessDto);
+  public void acceptMatchInfo(MatchProcessDto matchProcessDto);
 
-  public MatchInfo denyMatchInfo(MatchProcessDto matchProcessDto);
+  public void denyMatchInfo(MatchProcessDto matchProcessDto);
 
   public void startParty(MatchProcessDto matchProcessDto);
 
