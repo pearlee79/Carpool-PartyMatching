@@ -14,7 +14,7 @@ import java.util.List;
 //import javax.persistence.OneToMany;
 
 @Entity
-public class MatchInfo {
+public class MatchInfo extends BaseEntity {
   @Id @GeneratedValue
   Long id;
 

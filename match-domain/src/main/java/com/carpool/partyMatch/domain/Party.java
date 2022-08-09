@@ -12,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import java.util.List;
 
 @Entity
-public class Party {
+public class Party extends BaseEntity {
     @Id @GeneratedValue
     Long id;
     Long partyInfoId;

@@ -17,7 +17,7 @@ import com.carpool.partyMatch.domain.MatchStatus;
 import com.carpool.partyMatch.domain.Party;
 import com.carpool.partyMatch.controller.dto.MatchInfoDto;
 import com.carpool.partyMatch.controller.dto.MatchProcessDto;
-import com.carpool.partyMatch.controller.dto.MatchInfoListResponse;
+import com.carpool.partyMatch.controller.dto.MatchInfoListResponseDto;
 import com.carpool.partyMatch.domain.MatchInfo;
 import com.carpool.partyMatch.service.MatchInfoService;
 
@@ -34,11 +34,11 @@ public class MatchInfoController {
 
   @Description("파티 매칭 정보 조회")
   @PostMapping("/matches/{partyInfoId}")
-	public ResponseEntity<MatchInfoListResponse> getMatchUser(@PathVariable Long partyInfoId) {
+	public ResponseEntity<MatchInfoListResponseDto> getMatchUser(@PathVariable Long partyInfoId) {
 
     // return matchInfoService.findMatchUser(partyInfoId);
     List<MatchInfo> matchInfo = matchInfoService.findMatchUser(partyInfoId);
-    MatchInfoListResponse response = new MatchInfoListResponse(matchInfo);
+    MatchInfoListResponseDto response = new MatchInfoListResponseDto(matchInfo);
     return ResponseEntity.ok(response);
 	}
 
