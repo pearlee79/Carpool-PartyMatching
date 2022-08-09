@@ -7,6 +7,4 @@ public class PartyDto {
 
   private Long partyInfoId;
 
-  // private Driver driver;
-
 }

@@ -2,12 +2,10 @@ package com.carpool.partyMatch.controller.dto;
 
 import lombok.Data;
 
-import com.carpool.partyMatch.domain.MatchStatus;
-
 @Data
-public class MatchInfoDto {
+public class PartyProcessDto {
 
   private Long partyInfoId;
-  private Long userId;
+  private Long driverId;
 
 }

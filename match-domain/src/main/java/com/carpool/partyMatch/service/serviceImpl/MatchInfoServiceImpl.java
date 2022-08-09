@@ -7,6 +7,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.carpool.partyMatch.controller.dto.MatchInfoDto;
 import com.carpool.partyMatch.controller.dto.MatchProcessDto;
+import com.carpool.partyMatch.controller.dto.PartyProcessDto;
+import com.carpool.partyMatch.controller.dto.response.PartyProcessResponse;
 import com.carpool.partyMatch.domain.MatchInfo;
 import com.carpool.partyMatch.domain.Party;
 import com.carpool.partyMatch.domain.Carpooler;
@@ -22,18 +24,20 @@ import com.carpool.partyMatch.exception.ErrorCode;
 import java.lang.RuntimeException;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MatchInfoServiceImpl implements MatchInfoService {
 
   private final MatchInfoRepository matchInfoRepository;
-  private final PartyRepository partyRepository;;
- // private final RestTemplate restTemplate;
+  private final PartyRepository partyRepository;
 
     @Override
-    public List<MatchInfo> findMatchUser(Long partyInfoId){
-        // log.info("********* findMatchUser *********");
-        // log.debug(String.valueOf(matchInfoDto));
+    public List<MatchInfo> findMatchUsers(Long partyInfoId){
+        log.info("********* findMatchUsers Service *********");
 
         List<MatchInfo> matchInfoList = matchInfoRepository.findByPartyInfoIdAndMatchStatus(partyInfoId, MatchStatus.WATING);
 
@@ -41,9 +45,9 @@ public class MatchInfoServiceImpl implements MatchInfoService {
     }
 
     @Override
-    public void registerMatchInfo(MatchInfoDto matchInfoDto){
-        // log.info("********* registerMatchInfo *********");
-        // log.debug(String.valueOf(matchInfoDto));
+    public MatchInfo registerMatchInfo(MatchInfoDto matchInfoDto){
+        log.info("********* registerMatchInfo *********");
+        log.debug(String.valueOf(matchInfoDto));
 
         //파티 상태 확인 (시작 또는 종료이면 신청 불가)
         MatchInfo matchInfo = new MatchInfo();
@@ -52,12 +56,14 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         matchInfo.setMatchStatus(MatchStatus.WATING);
 
         matchInfoRepository.save(matchInfo);
+
+        return matchInfo;
     }
 
     @Override
-    public void cancelMatchInfo(MatchInfoDto matchInfoDto){
-        // log.info("********* cancelMatchInfo *********");
-        // log.debug(String.valueOf(matchInfoDto));
+    public MatchInfo cancelMatchInfo(MatchInfoDto matchInfoDto){
+        log.info("********* cancelMatchInfo *********");
+        log.debug(String.valueOf(matchInfoDto));
 
         //파티 상태 확인 (시작 또는 종료이면 취소 불가)
         MatchInfo matchInfo = matchInfoRepository.findByPartyInfoIdAndUserId(matchInfoDto.getPartyInfoId(), matchInfoDto.getUserId());
@@ -66,12 +72,14 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         matchInfo.setMatchStatus(MatchStatus.CANCEL);
 
         matchInfoRepository.save(matchInfo);
+
+        return matchInfo;
     }
 
     @Override
-    public void acceptMatchInfo(MatchProcessDto matchProcessDto){
-        // log.info("********* acceptMatchInfo *********");
-        // log.debug(String.valueOf(matchProcessDto));
+    public MatchInfo acceptMatchInfo(MatchProcessDto matchProcessDto){
+        log.info("********* acceptMatchInfo *********");
+        log.debug(String.valueOf(matchProcessDto));
 
         Party party = partyRepository.findByPartyInfoId(matchProcessDto.getPartyInfoId());
         MatchInfo matchInfo =  matchInfoRepository.findByPartyInfoIdAndUserId(matchProcessDto.getPartyInfoId(), matchProcessDto.getUserId());
@@ -87,13 +95,15 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         // matchInfoProducer.sendMessage();
 
         matchInfoRepository.save(matchInfo);
+
+        return matchInfo;
     }
 
     //파티관리 서비스에서 신청 가능 인원 확인 후 신청 불가할 경우에도 아래 실행
     @Override
-    public void denyMatchInfo(MatchProcessDto matchProcessDto){
-        // log.info("********* denyMatchInfo *********");
-        // log.debug(String.valueOf(matchProcessDto));
+    public MatchInfo denyMatchInfo(MatchProcessDto matchProcessDto){
+        log.info("********* denyMatchInfo *********");
+        log.debug(String.valueOf(matchProcessDto));
 
         Party party = partyRepository.findByPartyInfoId(matchProcessDto.getPartyInfoId());
         MatchInfo matchInfo = matchInfoRepository.findByPartyInfoIdAndUserId(matchProcessDto.getPartyInfoId(), matchProcessDto.getUserId());
@@ -109,48 +119,56 @@ public class MatchInfoServiceImpl implements MatchInfoService {
         // matchInfoProducer.sendMessage();
 
         matchInfoRepository.save(matchInfo);
+
+        return matchInfo;
     }
 
 
     @Override
-    public void startParty(MatchProcessDto matchProcessDto){
-        // log.info("********* startParty *********");
-        // log.debug(String.valueOf(matchProcessDto));
+    public PartyProcessResponse startParty(PartyProcessDto partyProcessDto){
+        log.info("********* startParty *********");
+        log.debug(String.valueOf(partyProcessDto));
 
-        Party party = partyRepository.findByPartyInfoId(matchProcessDto.getPartyInfoId());
+        Party party = partyRepository.findByPartyInfoId(partyProcessDto.getPartyInfoId());
 
         //운전자 확인 또는 세션 확인
         Driver driver = party.getDriver();
 
-        if(matchProcessDto.getDriverId() == driver.getDriverId()){
+        if(partyProcessDto.getDriverId() == driver.getDriverId()){
             party.setPartyStatus(PartyStatus.FORMED);
             partyRepository.save(party);
         }
 
+        PartyProcessResponse response = new PartyProcessResponse(party.getPartyInfoId(), party.getPartyStatus());
+
         //파티 시작 이벤트 발행
         // matchInfoProducer.sendMessage();
 
-        // return partyRepository.save(party);
+        return response;
     }
 
 
     @Override
-    public void closeParty(MatchProcessDto matchProcessDto){
-        // log.info("********* closeParty *********");
-        // log.debug(String.valueOf(matchProcessDto));
+    public PartyProcessResponse closeParty(PartyProcessDto partyProcessDto){
+        log.info("********* closeParty *********");
+        log.debug(String.valueOf(partyProcessDto));
 
-        Party party = partyRepository.findByPartyInfoId(matchProcessDto.getPartyInfoId());
+        Party party = partyRepository.findByPartyInfoId(partyProcessDto.getPartyInfoId());
 
         //운전자 확인 또는 세션 확인
         Driver driver = party.getDriver();
 
-        if(matchProcessDto.getDriverId() == driver.getDriverId()){
+        if(partyProcessDto.getDriverId() == driver.getDriverId()){
             party.setPartyStatus(PartyStatus.CLOSED);
             partyRepository.save(party);
         }
 
+        PartyProcessResponse response = new PartyProcessResponse(party.getPartyInfoId(), party.getPartyStatus());
+
         //파티 종료 이벤트 발행
         // matchInfoProducer.sendMessage();
+
+        return response;
     }
 
 }
