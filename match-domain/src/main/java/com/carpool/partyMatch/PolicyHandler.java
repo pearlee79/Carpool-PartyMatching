@@ -1,7 +1,6 @@
 package com.carpool.partyMatch;
 
 import com.carpool.partyMatch.domain.Carpooler;
-import com.carpool.partyMatch.domain.CustomerUpdated;
 // import com.carpool.partyMatch.repository.MemberRepository;
 import com.carpool.partyMatch.kafka.KafkaProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
