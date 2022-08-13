@@ -20,9 +20,6 @@ public class PolicyHandler {
     PartyRepository partyRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whatever(@Payload String eventString){}
-
-    @StreamListener(KafkaProcessor.INPUT)
     public void wheneverPartyRegistered_registerParty(@Payload PartyRegistered partyRegistered){
         if(!partyRegistered.validate())
             return;
