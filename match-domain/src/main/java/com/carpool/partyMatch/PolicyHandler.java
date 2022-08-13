@@ -24,7 +24,7 @@ public class PolicyHandler {
         if(!partyRegistered.validate())
             return;
 
-        Party party = partyRepository.findByPartyInfoId(partyRegistered.getId());
+        Party party = new Party();
 
         party.setPartyInfoId(partyRegistered.getId());
         party.setDriver(new Driver(partyRegistered.getDriverId(), partyRegistered.getDriverName()));
