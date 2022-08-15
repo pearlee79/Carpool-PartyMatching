@@ -10,8 +10,6 @@ spring:
   profiles: default
   datasource:
     url: jdbc:mysql://localhost:3306/MUNGTA?serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: skcc10633
-    password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
