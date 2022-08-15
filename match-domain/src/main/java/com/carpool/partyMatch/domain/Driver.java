@@ -9,16 +9,16 @@ import javax.persistence.Embeddable;
 public class Driver {
 
     Long driverId;
-    String name;
+    String driverName;
 
     protected Driver(){}
-    public Driver(Long driverId, String name){
+    public Driver(Long driverId, String driverName){
         this.driverId = driverId;
-        this.name = name;
+        this.driverName = driverName;
     }
 
-    public String getName() {
-        return name;
+    public String getDriverName() {
+        return driverName;
     }
 
     public Long getDriverId() {
